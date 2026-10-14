@@ -1,0 +1,17 @@
+.checkbox {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+  accent-color: var(--color-primary);
+  cursor: pointer;
+}
+
+.checkbox:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+.checkbox[aria-invalid="true"] {
+  outline: 1px solid var(--color-error);
+  outline-offset: 2px;
+}
