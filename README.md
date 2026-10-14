@@ -25,9 +25,32 @@ npm run dev
 - `src/features/lead/pages/` - Lead capture page.
 - `src/hooks/` - Form state and validation logic.
 
-### Other Commands
+## Component Architecture
 
-```bash
-npm run build
-npm run lint
-```
+```mermaid
+flowchart TD
+    A["App"] --> B["LeadPage"]
+    B --> C["LeadLayout"]
+    C --> D["DynamicForm"]
+
+    D --> E["FormField · Molecule"]
+
+    subgraph DS["Design System"]
+        E --> F["TextInput · Atom"]
+        E --> G["Select · Atom"]
+        E --> H["TextArea · Atom"]
+        E --> I["Checkbox · Atom"]
+    end
+
+    J["Form Config"] -.-> D
+    K["Validation Hook"] -.-> D
+    L["Design Tokens"] -.-> DS
+    L -.-> C
+
+    classDef page fill:#E6EEFF,stroke:#6886C5,color:#172B4D
+    classDef feature fill:#DDF4E4,stroke:#5B9B70,color:#173D25
+    classDef shared fill:#FFF0CC,stroke:#C39B43,color:#573B08
+
+    class A,B,C page
+    class D,J,K feature
+    class E,F,G,H,I,L shared
